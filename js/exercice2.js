@@ -57,4 +57,12 @@ console.log(client.prenom + " a commandé " + client.getNbCommandes() + " fois")
 client.ajoutCommande("789");
 console.log(client.prenom + " a commandé " + client.getNbCommandes() + " fois");
 
+client.age = 25;
+client.isMajeur = function (){
+    // return (this.age >= 18);
+    let majeur = (this.age>=18) ? true : false;
+    return majeur;
+};
+
+console.log(client.isMajeur());
 
