@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>S4: JQuery 1</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <style>ul .impair{background-color: silver;}</style>
+</head>
+<body>
+    <p id="p1" class="impair">Bonjour 1</p>
+    <p id="p2">Bonjour 2</p>
+    <p id="p3" class="impair">Bonjour 3</p>
+
+    <button id="btn" class="btn btn-primary">Cliquez</button><br>
+    
+    <input type="text" name="prenom" id="prenom" placeholder="Prenom">
+    <button id="btn_prenom" class="btn btn-primary">Cliquez Prenom</button><button type="reset" id="btn_reset" class="btn btn-secondary">Reset</button><br>
+    <ul id="list_prenom"></ul>
+    <button type="reset" id="btn_clear" class="btn btn-warning">Clear</button><br>
+
+
+    <div id="monDiv" style="width:100px;height:100px;background-color:grey;">&nbsp;</div>
+
+    <script type="text/javascript">
+        $(document).ready(function(){ //n'execute rien tant que la page n'est pas dessinée
+            /*console.log("ok");
+            $("#p1").hide();
+            $("p").hide();
+            $(".impair").hide();
+
+            $("#btn").click(function(){
+                console.log("cliqué");
+            });
+
+            $("#monDiv").dblclick(function(){
+                console.log("double clic");
+            });
+            
+           $("p").each(function(){
+               $(this).dblclick(function(){
+                   $(this).hide();
+               });
+           });
+           */
+
+            $("p").dblclick(function() {
+                $(this).hide();
+            });
+
+            const contenu = $("#p1").text();
+            console.log(contenu);
+            $("#p1").click(function(){
+                $("#p1").html("au revoir <strong>felix</strong>");
+            });
+            
+            $("#btn_prenom").click(function(){
+                console.log($("#prenom").val());
+                //$("ul").append("<li>" + $("#prenom").val() + "</li>");
+                if ($("#list_prenom").children().length%2 == 0) {
+                    $("#list_prenom").prepend("<li class='impair'>" + $("#prenom").val() + "</li>");
+                } else {
+                    $("#list_prenom").prepend("<li>" + $("#prenom").val() + "</li>");
+                }
+                $("#prenom").val("");
+            });
+
+            $("#btn_reset").click(function(){
+                $("#prenom").val("");
+            });
+            
+            $("#btn_clear").click(function(){
+                //$("#list_prenom").remove(); // enlève l'élément sélectionné
+                //$("#list_prenom").empty();
+                $("#list_prenom .impair").remove();
+                $("#list_prenom li:nth-child").remove();
+            });
+
+        });
+
+    </script>
+</body>
+</html>
