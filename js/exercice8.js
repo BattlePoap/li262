@@ -1,65 +1,63 @@
-const list = document.querySelector("#list");
+import {Personne} from './Personne.js';
+
+const tbody = document.querySelector("#list tbody");
 let tabList = [];
+let randomId = 4; // sequence id
 
-class Personne {
-    constructor (nom,prenom,age) {
-        this.nom = nom;
-        this.prenom = prenom;
-        this.age = age;
-    }
-}
-
-// fonction ajout/suppresion élément de liste
-function addPersonneToList(personne){
-    tabList.push(personne);
-}
-
-function delPersonneFromList(id){
-    tabList.splice(id,1);
-}
 
 //génération du tableau au click
-document.querySelector("#addButton").onclick = drawList;
+document.querySelector("#addButton").onclick = add;
 
-//fonction qui dessine le tableau
-function drawList() {
+
+
+//ajoute un élément à tabList
+function add(){
+    //récupère les valeurs
     let nom = document.querySelector("#nom").value;
     let prenom = document.querySelector("#prenom").value;
     let age = document.querySelector("#age").value;
-
+    
     //ajoute l'item à la liste
-    addPersonneToList(new Personne (nom, prenom, age)); 
-    
-    //génère la liste"
-    list.innerHTML =    "<thead>\
-                            <tr>\
-                                <th>id</th>\
-                                <th>nom</th>\
-                                <th>prenom</th>\
-                                <th>age</th>\
-                            </tr>\
-                        </thead>\
-                        <tbody>";
-    
+    tabList.push(new Personne (randomId++,nom, prenom, age));
+    drawList();
+}
+
+
+//supprime un élément de tabList
+function del(id){
+    for (let i = 0; i<tabList.length; i++){
+        let p = tabList[i];
+        if (id == p.id) {
+            tabList.splice(i,1);
+        }
+    }
+    drawList();
+}
+
+
+//dessine le tableau
+function drawList() {
+    tbody.innerHTML="";
+    //génère la liste"  
     for (let i = 0; i < tabList.length; i++) {
         const p = tabList[i];
-        list.innerHTML +=   "<tr>\
-                                <td>" + (i+1) + "</td>" +
+        tbody.innerHTML +=   "<tr>\
+                                <td>" + p.id + "</td>" +
                                 "<td>" + p.nom + "</td>" +
                                 "<td>" + p.prenom + "</td>" +
                                 "<td>" + p.age + "</td>" + 
-                                "<td><span visible=\"false\" class=\"delButton\"><img src=\"img/delete.svg\" style=\"width:16px; height:16px;\"/></span>" +"</td>" +
-                                
+                                "<td><button id='btn" + p.id + "'>X</button></td>" +
                             "</tr>";
     };
-    
-    list.innerHTML += "</tbody>";
-}
 
-// affiche le bouton de suppression au survol
-document.querySelectorAll("tr").onmouseover = function(){
-    this.querySelector("delButton").visible("true");
-}
+    //appel de la suppression au click
+    for (let i = 0; i<tabList.length; i++){
+        const id = tabList[i].id;
+        document.querySelector("#btn"+id).onclick = function(){
+            del(id);
+        }
+    }
 
-document.querySelectorAll(".delButton").onclick = delPersonneFromList(this.parentNode.parentNode);
+
+}
 

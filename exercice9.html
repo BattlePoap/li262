@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>S4: Exercice 9</title>
+</head>
+<body>
+
+    <script type="text/javascript">
+        const xhttp = new XMLHttpRequest();
+        const url = "serveur.php?nom=toto&prenom=bubu&age=25";
+        xhttp.onload = function() {
+            if ((this.readyState == 4) && (this.status == 200)){ //readyState = 4 => requete finie
+                //affiche le texte reçu
+                console.log(this.responseText);
+
+                //convertit en JSON
+                //JSON.parse : String => Objet JS
+                //JSON.stringify : Objet JS => String
+                const p = JSON.parse(this.response);
+                console.log(p);
+                
+            } else {
+                console.log("ERREUR HTTP");
+            }
+        };
+
+        xhttp.open("GET", url, true); // async
+        xhttp.send();
+    </script>
+    
+</body>
+</html>
