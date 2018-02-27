@@ -1,16 +1,14 @@
 import {Personne} from './Personne.js';
 
 const tbody = document.querySelector("#list tbody");
-let tabList = [];
+const tabList = [];
 let randomId = 4; // sequence id
 
 
-//génération du tableau au click
+// génération du tableau au click
 document.querySelector("#addButton").onclick = add;
 
-
-
-//ajoute un élément à tabList
+// ajoute un élément à tabList
 function add(){
     //récupère les valeurs
     let nom = document.querySelector("#nom").value;

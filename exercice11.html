@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>S4: Exercice 11</title>
+    <style>
+        .invisible{
+            display: none;
+            }
+    </style>
+</head>
+<body>
+    <p id="nb_visiteurs"></p>
+
+    <div id="form_login">
+        <input type="text" id="nom" name="nom">
+        <input type="text" id="prenom" name="prenom">
+        <button type="submit" id="btn">Log in</button>
+    </div>
+    <div id="welcome" class="invisible"></div>
+
+
+
+
+    <script type="text/javascript">
+        if ( typeof(localStorage) !== null){
+            console.log("OK"); //localStorage supporté
+
+            if ( localStorage["nb_visiteurs"] == null) {
+                localStorage["nb_visiteurs"] = 0;
+            } else {
+                localStorage["nb_visiteurs"]++;
+            }
+            document.querySelector("#nb_visiteurs").innerHTML = localStorage["nb_visiteurs"];
+            console.log(localStorage["nb_visiteurs"]);
+            
+            if ( localStorage["utilisateur_courant"] != null) {
+                document.querySelector("#form_login").className = "invisible";
+                document.querySelector("#welcome").className = "";
+                const u = JSON.parse(localStorage["utilisateur_courant"]);
+                document.querySelector("#welcome").innerHTML = "Bienvenue "+ u.prenom + " " + u.nom;                
+            } else {
+                document.querySelector("#btn").onclick = function () {
+                    let utilisateur = {};
+                    utilisateur.prenom = document.querySelector("#prenom").value;
+                    utilisateur.nom = document.querySelector("#nom").value;
+                    localStorage["utilisateur_courant"] = JSON.stringify(utilisateur);
+                };
+            }
+
+
+        } else {
+            console.log("NOK");
+        }
+    </script>
+</body>
+</html>
