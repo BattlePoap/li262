@@ -7,6 +7,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
+
+    <p class="rouge">paragraphe 1</p>
+    <p id="p2">paragraphe 2</p>
+    <p class="rouge">paragraphe 3</p>
+
+    <input type="text" value="mathieu" name="nom" id="nom">
+    <input type="button" id="validButton" name="validButton" value="valider">
+
+
     <script src="js/exercice7.js"></script>
+    <script type="text/javascript">
+        // Old way
+        //document.getElementById()
+
+        //New way
+        const x2 = document.querySelector('#p2').innerHTML;
+        console.log(x2);
+
+        const rouges2 = document.querySelector(".rouge");
+        console.log(rouges2);
+
+        const p2 = document.querySelectorAll("p");
+        console.log(p2);
+        
+        const nom = document.querySelector("#nom").value;
+        console.log(nom);
+
+        document.querySelector("#validButton").onclick = function () {
+            console.log("click ok");
+        };
+        
+        
+    </script>
 </body>
 </html>
