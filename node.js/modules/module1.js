@@ -1,3 +1,3 @@
-exports.disBonjour = function () {
-    return "bonjour";
+exports.disBonjour = function (name) {
+    return "bonjour " + name;
 }
