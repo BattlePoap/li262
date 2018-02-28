@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>S4: JQUery 2</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <style>
+        .cacher{
+            display: none;
+        }
+        .montrer{
+            display: block;
+        }
+        div{
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div id="bloc1" style="background-color: darkviolet";></div>
+    <div id="bloc2" class="cacher" style="background-color: firebrick";></div>
+
+    <button id="btn-bloc1">Bloc 1</button>
+    <button id="btn-bloc2">Bloc 2</button>
+    <button id="btn-vert">Vert</button>
+
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#btn-bloc1").click(function(){
+                // if($("#bloc1").hasClass("cacher")){
+                // $("#bloc1").removeClass("cacher");
+                // $("#bloc1").addClass("montrer"); 
+                // } else {
+                // $("#bloc1").addClass("cacher"); 
+                // }
+                // ou alors...
+                //$("#bloc1").toggleClass("cacher");
+                $("#bloc1").toggle(300);
+
+            });
+            $("#btn-bloc2").click(function(){
+                $("#bloc2").removeClass("cacher");
+            });
+            $("#btn-vert").click(function(){
+                //$("#bloc1").css("background-color","green");
+                $("#bloc1").css({
+                    "background-color": "green",
+                    "width": "500px"
+                });
+            });
+        });
+    </script>
+</body>
+</html>

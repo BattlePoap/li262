@@ -10,10 +10,11 @@
 </head>
 <body>
 
-    <div class="container">
-        <div class="jumbotron col-6">
-            <h1 class="display-4">Formulaire JQuery</h1>
-            <form>
+    <div class="row">
+        <div class="jumbotron col-4">
+            <h1 class="display-4">Mini-back JQuery</h1>
+           
+                <input type="hidden" id="id" value=""> <!-- récupère la valeur quand edit -->
             <div class="form-group">
                 <label for="prenom">Prénom</label>
                 <input type="text" id="prenom" class="form-control" name="prenom" placeholder="prenom">
@@ -23,15 +24,126 @@
                 <input type="text" id="nom" class="form-control" name="nom" placeholder="nom">
             </div>
             <div class="form-group">
-                <label for="age">Nom</label>
-                <input type="text" id="age" class="form-control" name="age" placeholder="age">
+                <label for="age">Âge</label>
+                <input type="number" id="age" class="form-control" name="age" placeholder="âge">
             </div>
             <button type="submit" id="btn-send" class="btn btn-primary">Envoyer</button>
         </div>
+        <div class="col-8">
+        <table id="list" class="table table-striped">
+            <thead class="thead-light">
+                <tr>
+                    <th>Id</th>
+                    <th>Prenom</th>
+                    <th>Nom</th>
+                    <th>Age</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        </div>
     </div>
 
-
     <script type="text/javascript">
+        //FIXME: import
+        class Personne {
+            constructor(id, prenom, nom, age) {
+            this.id = id;
+            this.prenom = prenom;
+            this.nom = nom;
+            this.age = age;
+            }
+        }
+
+        //DECLARATION DES VARIABLES
+        const xhttp = new XMLHttpRequest();
+        const tbody = $("#list tbody");
+        const tabList = [];
+
+        //FONCTIONS
+        function callServer(prenom, nom, age){
+            const url = "../serveur.php?prenom=" + prenom + "&nom=" + nom + "&age=" + age;            
+            xhttp.onload = function(){
+                //lancée une fois que le serveur répond
+                console.log("onload");
+                if ((this.readyState == 4) && (this.status == 200)) {
+                    const p = JSON.parse(this.response);
+                    console.log(p);                    
+                    tabList.push(new Personne (p.id, p.prenom, p.nom, p.age));
+                    drawList();
+                } else {
+                    console.log("HTTP ERROR");
+                }
+            }
+            xhttp.open("GET", url, true);
+            xhttp.send();
+        }
+
+        function addItem(){        
+            const prenom = $("#prenom").val(); 
+            const nom = $("#nom").val();
+            console.log("addItem : " + nom);
+            const age = $("#age").val();
+            callServer(prenom, nom, age);
+            //vide les inputs
+            $("#prenom").val("");
+            $("#nom").val("");
+            $("#age").val("");
+        }
+
+        function delItem(id){
+            for (let i = 0; i < tabList.length; i++) {
+                const t = tabList[i];
+                if (t.id == id) {
+                    tabList.splice(i,1);
+                }
+            }
+            drawList();
+        }
+
+        function editItem(item){
+            //TODO: envoyer id dans type="hidden"
+            $("#prenom").val(item.prenom);
+            $("#nom").val(item.nom);
+            $("#age").val(item.age);   
+        }
+
+        function drawList(){
+            tbody.empty(); //vide le tableau
+            //TODO: checker si id existe
+            for (let i = 0; i < tabList.length; i++) {
+                const p = tabList[i];
+                tbody.append("<tr>\
+                                <td>" + p.id+ "</td>" +
+                                "<td>" + p.prenom + "</td>" +
+                                "<td>" + p.nom + "</td>" +
+                                "<td>" + p.age + "</td>" +
+                                "<td><button type='button' class='btn-warning' id='btn-edit" + p.id + "'>E</button>\
+                                    <button type='button' class='btn-danger' id='btn-del" + p.id + "'>X</button></td>" +
+                            "</tr>");
+            }
+            
+            for ( let i = 0; i < tabList.length; i++) {
+                let id = tabList[i].id;
+                $("#btn-del"+id).click(function () {
+                    delItem(id);
+                });
+            }
+
+            for ( let i = 0; i < tabList.length; i++) {
+                let id = tabList[i].id;
+                $("#btn-edit"+id).click(function () {
+                    editItem(tabList[i]);
+                });
+            }
+        }
+
+        //APPELS FONCTIONS
+        $("#btn-send").click(function () {
+            addItem();
+        });
 
 
     </script>

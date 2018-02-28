@@ -5,40 +5,40 @@ const tbody = document.querySelector("#list tbody");
 const tabList = [];
 
 // appelle le serveur
-function callServer(nom,prenom,age){
-    const url = "serveur.php?nom="+nom+"&prenom="+prenom+"&age="+age;
-    xhttp.onload = function() {
+function callServer(nom, prenom, age) {
+    const url = "serveur.php?nom=" + nom + "&prenom=" + prenom + "&age=" + age;
+    xhttp.onload = function () {
         // Methode qui est appelée quand le serveur répond
-        if ((this.readyState == 4) && (this.status == 200)){
+        if ((this.readyState == 4) && (this.status == 200)) {
             const p = JSON.parse(this.response);
-            //ajoute l'item à la liste
-            tabList.push(new Personne (p.id,p.nom, p.prenom, p.age));
+            // ajoute l'item à la liste
+            tabList.push(new Personne(p.id, p.nom, p.prenom, p.age));
             drawList();
         } else {
-            console.log("ERREUR HTTP");     
+            console.log("ERREUR HTTP");
         }
-    }
-    xhttp.open("GET", url, true); //dit ce qu'on veut faire //async
-    xhttp.send(); //exécute
+    };
+    xhttp.open("GET", url, true); // dit ce qu'on veut faire //async
+    xhttp.send(); // exécute
 }
 
-//ajoute un élément à tabList
-function add(){
-    //récupère les valeurs
-    let nom = document.querySelector("#nom").value;
-    let prenom = document.querySelector("#prenom").value;
-    let age = document.querySelector("#age").value;
-    
-    callServer(nom,prenom,age);
+// ajoute un élément à tabList
+function add() {
+    // récupère les valeurs
+    const nom = document.querySelector("#nom").value;
+    const prenom = document.querySelector("#prenom").value;
+    const age = document.querySelector("#age").value;
+
+    callServer(nom, prenom, age);
 }
 
 
-//supprime un élément de tabList
-function del(id){
-    for (let i = 0; i<tabList.length; i++){
-        let p = tabList[i];
+// supprime un élément de tabList
+function del(id) {
+    for (let i = 0; i < tabList.length; i++) {
+        const p = tabList[i];
         if (id == p.id) {
-            tabList.splice(i,1);
+            tabList.splice(i, 1);
         }
     }
     drawList();
@@ -65,7 +65,7 @@ function drawList() {
         const id = tabList[i].id;
         document.querySelector("#btn" + id).onclick = function () {
             del(id);
-        }
+        };
     }
 
 
