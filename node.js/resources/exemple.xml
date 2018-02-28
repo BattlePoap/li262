@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<utilisateurs>
+    <utilisateur id="1">
+        <nom>Son</nom>
+        <prenom>Goku</prenom>
+    </utilisateur>
+    <utilisateur id="2">
+        <nom>Son</nom>
+        <prenom>Gohan</prenom>
+    </utilisateur>
+    <utilisateur id="3">
+        <nom>Son</nom>
+        <prenom>Goken</prenom>
+    </utilisateur>
+</utilisateurs>

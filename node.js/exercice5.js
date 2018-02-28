@@ -31,7 +31,7 @@ http.createServer(function (request, response) {
             for ( const key in urlObject.query) {
                 data += "- " + key + ": " + urlObject.query[key] + "\n";
             }
-        
+
             fs.appendFile("./resources/access.log", data, function (error) {
                 if (error) {
                     console.log("appendFile error : " + error);
