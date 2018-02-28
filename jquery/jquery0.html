@@ -96,9 +96,14 @@
 
         function editItem(item){
             //TODO: envoyer id dans type="hidden"
+            $("#id").val(item.id);
             $("#prenom").val(item.prenom);
             $("#nom").val(item.nom);
             $("#age").val(item.age);   
+        }
+
+        function changeTab(item){
+            
         }
 
         function drawList(){
