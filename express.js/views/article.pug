@@ -1,0 +1,36 @@
+html
+    head
+        title "S4: Article (généré par PUG)"
+        link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous")
+    body
+        div.container
+            div.row
+                div.col-10
+                    h1 #{title}
+                    p Aller voir sur 
+                        a(href="https://amazon.com", target="_blank") Amazon
+                    h2 Comptage
+                    ul
+                        each p in inventaire
+                            if p.prix == null
+                                li #{p.produit}
+                            else
+                                li #{p.produit} - (#{p.prix}€)
+                    h2 Table
+                    table.table.table-striped
+                        thead
+                            tr
+                                th #
+                                th Produit
+                                th Prix
+                        tbody
+                            - let i = 1
+                            each p in inventaire
+                                tr
+                                    td #{i}
+                                    td #{p.produit}
+                                    if p.prix == null
+                                        td 
+                                    else
+                                        td #{p.prix}€
+                                - i++

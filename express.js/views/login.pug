@@ -1,0 +1,21 @@
+html
+    head
+        title "S4: Login (PUG)"
+        link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous")
+        script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js)
+    body
+        div.container
+            div.row
+                div.jumbotron.col-4
+                    h1 Login
+                    form(action="/usr/", method="post")
+                        div.form-group
+                            label(for="identifiant") Votre email
+                            input#identifiant.form-control(type="mail", name="identifiant", placeholder="email")
+                        div.form-group
+                            label(for="password") Votre password
+                            input#password.form-control(type="password", name="password", placeholder="mot de passe")
+                        if (error)
+                            div.alert.alert-warning(role="warning") #{error}
+                        input.btn.btn-primary(type="submit", value="Se connecter")
+                
