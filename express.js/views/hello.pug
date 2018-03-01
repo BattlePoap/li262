@@ -1,8 +1,9 @@
 html
     head
-        title "S4: Hello (généré par PUG)"
+        title "S4: Hello (avec PUG)"
         link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous")
-
+        script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js")
     body
-        h1#monID Bienvenue (avec PUG)
-        p Bienvenue #{mail}
+        h1 Bienvenue #{mail} (avec PUG)
+        p#users 
+        script(src="/js/home.js", type="text/javascript")
