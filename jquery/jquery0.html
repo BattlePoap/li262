@@ -52,6 +52,7 @@
         const xhttp = new XMLHttpRequest();
         const tbody = $("#list tbody");
         const tabList = [];
+        let edit = false;
 
         //FONCTIONS
         function callServer(prenom, nom, age){
@@ -73,11 +74,34 @@
         }
 
         function addItem(){        
+            const id =  $("#id").val()
+            console.log("valeur du champ hidden: " + id);
             const prenom = $("#prenom").val(); 
             const nom = $("#nom").val();
-            console.log("addItem : " + nom);
             const age = $("#age").val();
-            callServer(prenom, nom, age);
+            console.log("addItem");
+            if (edit) {
+                for ( let i = 0; i<tabList.length; i++) {
+                    console.log("entré dans le for");
+                    const item = new Personne(id, nom, prenom, age);
+                    console.log("création de personne");
+                    let t = tabList[i];
+                    console.log("item id: " + item.id);
+                    console.log("tabl id: " + t.id);
+                    if (item.id == t.id) {
+                        t.nom = item.nom;
+                        t.prenom = item.prenom;
+                        t.age = item.age;
+                        console.log("remplacement");
+                    }
+                }
+                drawList();
+                console.log("fin dessin de tableau");
+                edit = false;
+                console.log("remise à false d'edit");
+            } else {
+                callServer(prenom, nom, age);
+            }
             //vide les inputs
             $("#prenom").val("");
             $("#nom").val("");
@@ -94,21 +118,18 @@
             drawList();
         }
 
-        function editItem(item){
-            //TODO: envoyer id dans type="hidden"
+        function putItem(item){
             $("#id").val(item.id);
             $("#prenom").val(item.prenom);
             $("#nom").val(item.nom);
-            $("#age").val(item.age);   
-        }
-
-        function changeTab(item){
-            
+            $("#age").val(item.age);
+            edit = true;
+            console.log("mets les valeurs");
         }
 
         function drawList(){
             tbody.empty(); //vide le tableau
-            //TODO: checker si id existe
+
             for (let i = 0; i < tabList.length; i++) {
                 const p = tabList[i];
                 tbody.append("<tr>\
@@ -131,7 +152,7 @@
             for ( let i = 0; i < tabList.length; i++) {
                 let id = tabList[i].id;
                 $("#btn-edit"+id).click(function () {
-                    editItem(tabList[i]);
+                    putItem(tabList[i]);
                 });
             }
         }
