@@ -1,0 +1,21 @@
+html
+    head
+        title S4: formulaire de création d'utilisateur MongoDB
+        link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous")
+
+    body
+        div.container
+                div.row
+                    div.jumbotron.col-4
+                        h1 Login
+                        form(action="/users_add", method="post")
+                            div.form-group
+                                label(for="nom") Nom
+                                input#nom.form-control(type="text" name="nom" placeholder="Nom")
+                            div.form-group
+                                label(for="prenom") Prénom
+                                input#prenom.form-control(type="text" name="prenom" placeholder="Prenom")
+                            div.form-group
+                                label(for="age") Âge
+                                input#age.form-control(type="number" name="age" placeholder="Âge")
+                            input#btn-submit.btn.btn-success(type="submit", value="Ajouter")

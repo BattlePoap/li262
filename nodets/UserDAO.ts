@@ -3,7 +3,18 @@
 const mongoClient = require("mongodb").MongoClient;
 
 class UserDAO {
-    getAll(cb) {
+    async getAll(cb) {
+        try {
+            const database = await mongoClient.connect("mongodb://localhost:27017/formation");
+            const collection = await database.collection("utilisateurs");
+            const utilisateurs = await collection.find().toArray();
+            cb(null,utilisateurs);
+        } catch (error) {
+            cb(error);
+        }
+
+        /*
+        version basique :
         mongoClient.connect("mongodb://localhost:27017/formation", function (error, database) {
             if (error) {
                 console.log(error);
@@ -19,7 +30,20 @@ class UserDAO {
                 });
             }
         });
+        */
+    }
+
+    async addUser(user) {
+        try {
+            const database = await mongoClient.connect("mongodb://localhost:27017/formation");
+            const collection = await database.collection("utilisateurs");
+            await collection.insert(user);
+            return user;
+
+        } catch (error) {
+            return null;
+        }
     }
 }
 
-export {UserDAO};
+export{UserDAO};
