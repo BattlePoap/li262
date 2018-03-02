@@ -1,5 +1,6 @@
 import * as express from 'express';
 import * as path from 'path';
+import {UserDAO} from "./UserDAO";
 
 class App {
     public express;
@@ -16,7 +17,12 @@ class App {
         this.express.get('/users' , function (req, res) {
             res.json({"prenom": "felix", "nom":"sportelli"});
         });
-
+        
+        this.express.get('/users_mongo' , function (req, res) {
+            new UserDAO().getAll(function (error, utilisateurs){
+                res.json(utilisateurs);
+            })
+        });
     }
 }
 export {App};
