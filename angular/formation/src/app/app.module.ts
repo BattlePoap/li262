@@ -3,16 +3,21 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
+import { HelloComponent } from './hello/hello.component';
+import { FormsModule} from '@angular/forms';
+import { AurevoirService } from './aurevoir.service';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HelloComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [AurevoirService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

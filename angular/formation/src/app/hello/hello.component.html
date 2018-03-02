@@ -1,0 +1,30 @@
+<p>
+  hello works by {{ nom }}!
+</p>
+
+
+<ul>
+  <li *ngFor= "let user of utilisateurs">{{user}}</li>
+</ul>
+
+<table>
+  <tbody>
+    <tr *ngFor="let a of articles">
+      <td>{{a.nom}}</td>
+      <td *ngIf="a.prix > 0, else inconnu">{{a.prix}}</td>
+      <ng-template #inconnu><td>prix inconnu</td></ng-template>
+    </tr>
+  </tbody>
+</table>
+
+<button (click)="clic()">Clic moi</button>
+<p>{{bonjour}}</p>
+
+<form #monForm="ngForm">
+  <input type="text" name="password" [(ngModel)]="password">
+  <button type="submit" (click)="submitForm()">Connexion</button>
+</form>
+
+<ul>
+  <li *ngFor="let customer of customers">{{customer}}</li>
+</ul>
