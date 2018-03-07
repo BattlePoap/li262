@@ -1,0 +1,12 @@
+html
+    head
+        title matesens: front
+    body
+        form(action="/ms_tomongo", method="post")
+            label(for="nom") Nom
+            input#nom(type="text" name="nom")
+            label(for="prenom") Prenom
+            input#prenom(type="text" name="prenom")
+            label(for="age") Age
+            input#age(type="number" name="age")
+            input#btn-submit(type="submit", value="Ajouter")

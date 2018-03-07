@@ -1,0 +1,10 @@
+html
+    head   
+        title mat&sens: login
+    body
+        form(action="/ms_front", method="post")
+            label(for="id") Identifiant
+            input#id(type="text" name="id")
+            label(for="password") Mot de passe
+            input#password(type="password" name="password")
+            input#btn-submit(type="submit", value="Se connecter")
