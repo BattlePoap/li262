@@ -1,10 +1,18 @@
 html
     head   
         title mat&sens: login
+        link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous")
+
     body
-        form(action="/ms_front", method="post")
-            label(for="id") Identifiant
-            input#id(type="text" name="id")
-            label(for="password") Mot de passe
-            input#password(type="password" name="password")
-            input#btn-submit(type="submit", value="Se connecter")
+        div.container
+            div.row
+                div.jumbotron.col-4
+                    h1 Connexion
+                    form(action="/ms_front", method="post")
+                        div.form-group
+                            label(for="id") Identifiant
+                            input#id.form-control(type="text" name="id")
+                        div.form-group
+                            label(for="password") Mot de passe
+                            input#password.form-control(type="password" name="password")
+                        input#btn-submit.btn.btn-primary(type="submit", value="Se connecter")

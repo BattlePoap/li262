@@ -1,12 +1,22 @@
 html
     head
         title matesens: front
+        link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous")
+
     body
-        form(action="/ms_tomongo", method="post")
-            label(for="nom") Nom
-            input#nom(type="text" name="nom")
-            label(for="prenom") Prenom
-            input#prenom(type="text" name="prenom")
-            label(for="age") Age
-            input#age(type="number" name="age")
-            input#btn-submit(type="submit", value="Ajouter")
+        div.container
+            div.row
+                div.jumbotron.col-4
+                    h1 Ajout d'utilisateur
+                    form(action="/ms_tomongo", method="post")
+                        div.form-group
+                            label(for="nom") Nom
+                            input#nom.form-control(type="text" name="nom")
+                        div.form-group
+                            label(for="prenom") Prenom
+                            input#prenom.form-control(type="text" name="prenom")
+                        div.form-group
+                            label(for="age") Age
+                            input#age.form-control(type="number" name="age")
+                        input#btn-submit.btn.btn-success(type="submit", value="Ajouter")
+                div#div-table.col-8
