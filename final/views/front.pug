@@ -8,7 +8,7 @@ html
             div.row
                 div.jumbotron.col-4
                     h1 Ajout d'utilisateur
-                    form(action="/ms_tomongo", method="post")
+                    form(action="/ms_front", method="post")
                         div.form-group
                             label(for="nom") Nom
                             input#nom.form-control(type="text" name="nom")
@@ -20,3 +20,5 @@ html
                             input#age.form-control(type="number" name="age")
                         input#btn-submit.btn.btn-success(type="submit", value="Ajouter")
                 div#div-table.col-8
+    
+        script(src="./static/drawTable.js" type="text-javascript")
