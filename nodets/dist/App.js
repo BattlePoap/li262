@@ -46,7 +46,7 @@ class App {
                 const prenom = request.body.prenom;
                 const age = request.body.age;
                 const userObject = new User_1.User(nom, prenom, age);
-                console.log(userObject);
+                console.log("utilisateur ajouté à la collection MongoDB");
                 const user = yield new UserDAO_1.UserDAO().addUser(userObject);
                 response.json(user);
             });

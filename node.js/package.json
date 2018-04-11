@@ -15,6 +15,7 @@
   "author": "battlepoap",
   "license": "MIT",
   "dependencies": {
+    "npm-travis": "^1.0.2",
     "xml2js": "^0.4.19"
   }
 }
